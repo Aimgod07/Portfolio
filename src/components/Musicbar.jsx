@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import "./MusicBar.css";
+import "../components/MusicBar.css";
 
-/**
- * Drop as many tracks as you like in this array — each needs a title,
- * artist, cover image, and an audio `src`. Swap the SoundHelix demo
- * links below for your own hosted mp3/streaming URLs whenever you like.
- */
+
+
 export const DEFAULT_SONGS = [
   {
     id: 1,

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import MusicBar from "./MusicBar.jsx";
+import MusicBar from "../components/MusicBar";
 import "./SkillsScroller.css";
 
 gsap.registerPlugin(ScrollTrigger);
