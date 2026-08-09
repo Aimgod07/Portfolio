@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import "../components/MusicBar.css";
+import "../components/Musicbar.css";
 
 
 
