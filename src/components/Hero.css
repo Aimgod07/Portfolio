@@ -64,7 +64,7 @@
 
 .hero__photo-wrap {
   position: absolute;
-  top: 12%;
+  top: 19%;
   left: 25%;
   width: 60%;
   z-index: 1;
@@ -381,5 +381,29 @@
     position: static;
     transform: none;
     margin-top: 30px;
+  }
+}
+
+/* Very small screens (e.g. below 500x500): keep the photo centered
+   in the frame instead of pinned near the top, so it doesn't crowd
+   the navbar/social icons above it. */
+@media (max-width: 800px), (max-height: 800px) {
+  .hero__photo-wrap {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 120px auto 30px;
+  }
+  .hero__photo {
+    width: 62%;
+    max-width: 220px;
+    min-height: 0;
+    max-height: none;
+    margin-bottom: 0;
   }
 }
