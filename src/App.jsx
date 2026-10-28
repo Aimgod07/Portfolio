@@ -1,56 +1,24 @@
-import { useEffect } from "react";
-import LocomotiveScroll from "locomotive-scroll";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import "locomotive-scroll/dist/locomotive-scroll.css";
-
-import Navbar from "./components/Navbar.jsx";
-import Hero from "./components/Hero.jsx";
-import ProjectCarousel from "./components/ProjectCarousel.jsx";
-import SkillsScroller from "./components/SkillsScroller.jsx";
-import MetaverseSection from "./components/MetaverseSection.jsx";
-
+import { useLayoutEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import portrait from './assets/img/hero.png';
+import projectImage from './assets/img/project1.png';
+import artImage from './assets/img/ai.jpg';
+import threeImage from './assets/img/threejs.jpg';
+import './index.css';
 gsap.registerPlugin(ScrollTrigger);
-
-export default function App() {
-  useEffect(() => {
-    const locomotiveScroll = new LocomotiveScroll({
-      lenisOptions: {
-        lerp: 0.09,
-        duration: 1.1,
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        touchMultiplier: 1.6,
-      },
-      initCustomTicker: (render) => gsap.ticker.add(render),
-      destroyCustomTicker: (render) => gsap.ticker.remove(render),
-    });
-
-    locomotiveScroll.lenisInstance?.on("scroll", ScrollTrigger.update);
-    gsap.ticker.lagSmoothing(0);
-
-    // Give the DOM a beat to lay out (fonts/images) then recalc triggers.
-    const refresh = () => ScrollTrigger.refresh();
-    const t = setTimeout(refresh, 300);
-    window.addEventListener("load", refresh);
-
-    return () => {
-      clearTimeout(t);
-      window.removeEventListener("load", refresh);
-      locomotiveScroll.destroy();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
-  }, []);
-
-  return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <ProjectCarousel />
-        <SkillsScroller />
-        <MetaverseSection />
-      </main>
-    </>
-  );
-}
+const projects = [
+ {name:'Play, reimagined.', type:'Interface design', category:'Web', image:projectImage, theme:'lilac', description:'An exploration of playful interfaces, game discovery, and bold visual hierarchy. A study in making a busy experience feel intuitive.'},
+ {name:'Beyond the screen.', type:'Creative development', category:'Experiments', image:threeImage, theme:'sand', description:'A visual experiment at the intersection of dimensional graphics and interactive development. Exploring depth, texture, and unexpected perspectives.'},
+ {name:'A different perspective.', type:'Visual exploration', category:'Experiments', image:artImage, theme:'sage', description:'An ongoing exploration of digital imagery, composition, and visual storytelling. A space to test ideas outside the usual grid.'}
+];
+function Arrow(){return <span aria-hidden="true">↗</span>}
+function ProjectCard({project,index,onOpen}){return <button className={'project-card reveal '+project.theme} onClick={()=>onOpen(project)}><div className="project-art"><span className="project-number">SELECTED EXPLORATION / 0{index+1}</span><img src={project.image} alt={project.name} loading="lazy"/><span className="project-open"><Arrow/></span></div><div className="project-caption"><h3>{project.name}</h3><span>{project.type}</span></div></button>}
+function Footer(){return <footer className="creative-footer"><div className="footer-orbit"/><p className="eyebrow">GOOD THINGS START WITH A CONVERSATION</p><h2>Have a vision?<br/><em>Let's make it real.</em></h2><div className="folder-scene"><span className="float-tag tag-one">DESIGN</span><span className="float-tag tag-two">DEVELOPMENT</span><div className="folder-art art-one"><img src={threeImage} alt="Dimensional visual exploration"/></div><div className="folder-art art-two"><img src={projectImage} alt="Game interface exploration"/></div><div className="folder-art art-three"><img src={artImage} alt="Digital art exploration"/></div><a className="glass-folder" href="mailto:ihyaet@gmail.com"><span>✳ Deepanshu's next chapter</span><span className="folder-link">Let's talk <Arrow/></span></a></div><div className="footer-bottom"><a href="mailto:ihyaet@gmail.com">ihyaet@gmail.com <Arrow/></a><span>Made with intention. And a little imagination.</span><span>© {new Date().getFullYear()} Deepanshu</span></div></footer>}
+function Home({onOpen}){return <><section className="hero-editorial"><div className="hero-title"><p className="eyebrow">DEVELOPER BY CRAFT. CREATIVE BY NATURE.</p><h1>Thoughtful code.<br/><em>Unexpected possibilities.</em></h1><p className="hero-description">I'm Deepanshu. I bring ideas to life through<br/> expressive design and meaningful digital experiences.</p><a className="pill dark" href="#/projects">Explore my work <Arrow/></a></div><div className="portrait-stage"><div className="orbit orbit-one"/><div className="orbit orbit-two"/><img className="hero-portrait" src={portrait} alt="Illustrated portrait of Deepanshu"/><div className="floating-note note-left"><span className="note-symbol">✳</span><h3>Ideas into<br/>experiences.</h3><p>A curious mind.<br/>A builder's instinct.</p></div><div className="floating-note note-right"><span className="note-symbol lavender">↗</span><h3>Made to feel<br/>a little different.</h3><p>Design with purpose.<br/>Details with personality.</p></div><div className="glass-chip chip-left"><span>⌘</span><div>Creative developer<small>Logic meets imagination.</small></div></div><div className="glass-chip chip-right"><span>✧</span><div>Always exploring<small>One idea at a time.</small></div></div><div className="hero-side left"><i/>Available for collaborations</div><div className="hero-side right">SCROLL TO DISCOVER ↓</div></div></section><div className="ticker"><div>DESIGN WITH INTENTION <b>✳</b> BUILD WITH CURIOSITY <b>✳</b> MAKE SOMETHING MATTER <b>✳</b> DESIGN WITH INTENTION <b>✳</b> BUILD WITH CURIOSITY <b>✳</b></div></div><section className="section about"><div><p className="eyebrow reveal">01 / A LITTLE ABOUT ME</p><h2 className="reveal">A developer's mind.<br/><em>An artist's eye.</em></h2></div><div className="about-copy reveal"><p>I’m Deepanshu, a full stack developer who loves the space where technology and creativity meet.</p><p>I care about how an experience works just as much as how it feels. From the first sketch to the final interaction, I turn complex ideas into clear, considered interfaces.</p><a className="text-link" href="mailto:ihyaet@gmail.com">Get to know me <Arrow/></a></div><div className="about-values reveal"><span>01 <strong>Curiosity first</strong></span><span>02 <strong>Details matter</strong></span><span>03 <strong>Always evolving</strong></span></div></section><section className="section work-preview"><div className="section-heading reveal"><div><p className="eyebrow">02 / SELECTED EXPLORATIONS</p><h2>A few things<br/><em>from my world.</em></h2></div><a className="pill" href="#/projects">All projects <Arrow/></a></div><div className="project-grid">{projects.slice(0,2).map((p,i)=><ProjectCard key={p.name} project={p} index={i} onOpen={onOpen}/>)}</div></section><section className="skills-section section"><div className="reveal"><p className="eyebrow">03 / THE TOOLBOX</p><h2>Good ideas deserve<br/><em>the right tools.</em></h2><p className="muted">A versatile stack. An experimental mindset.</p></div><div className="skill-grid">{[['React','Interfaces that respond.','⚛'],['Node.js','Behind the experience.','⌘'],['Python','Ideas into possibilities.','↗'],['Next.js','From concept to the web.','N'],['GSAP','A little choreography.','〰'],['Three.js','Another dimension.','△']].map(([name,desc,icon])=><div className="skill-card reveal" key={name}><span>{icon}</span><h3>{name}</h3><p>{desc}</p></div>)}</div></section><section className="section process"><div className="reveal"><p className="eyebrow">04 / HOW I APPROACH THINGS</p><h2>From a spark<br/><em>to something real.</em></h2></div><div>{[['Discover','Listen, ask questions, and find the idea worth building.'],['Design','Explore the visual language. Give the idea shape and personality.'],['Develop','Build thoughtfully, refine the interactions, and bring it all together.']].map(([title,desc],i)=><article className="process-row reveal" key={title}><span>0{i+1}</span><div><h3>{title}</h3><p>{desc}</p></div><Arrow/></article>)}</div></section><section className="art-teaser section reveal"><span className="eyebrow">OFF THE GRID / ON MY MIND</span><h2>Not everything<br/>starts with <em>code.</em></h2><p>A space for visual experiments and creative detours.</p><a className="pill" href="#/art">Enter the art room <Arrow/></a><span className="art-star" aria-hidden="true">✳</span></section><Footer/></>}
+export default function App(){const [page,setPage]=useState(()=>location.hash.split('/')[1]||'home');const [filter,setFilter]=useState('All');const [selected,setSelected]=useState(null);const root=useRef(null);const cursor=useRef(null);const close=useRef(null);
+useLayoutEffect(()=>{const change=()=>{setPage(location.hash.split('/')[1]||'home');setSelected(null);window.scrollTo(0,0)};window.addEventListener('hashchange',change);return()=>window.removeEventListener('hashchange',change)},[]);
+useLayoutEffect(()=>{const mm=gsap.matchMedia();mm.add('(prefers-reduced-motion: no-preference)',()=>{const ctx=gsap.context(()=>{gsap.from('.hero-title > *, .page-intro > *',{y:28,opacity:0,stagger:.12,duration:1,ease:'power3.out'});gsap.from('.hero-portrait',{y:90,opacity:0,duration:1.4,ease:'power3.out'});gsap.utils.toArray('.reveal').forEach(el=>gsap.from(el,{y:45,opacity:0,duration:.85,ease:'power2.out',scrollTrigger:{trigger:el,start:'top 92%'}}));gsap.to('.floating-note,.glass-chip',{y:-14,stagger:.3,repeat:-1,yoyo:true,duration:3,ease:'sine.inOut'});gsap.to('.hero-portrait',{y:65,ease:'none',scrollTrigger:{trigger:'.hero-editorial',start:'top top',end:'bottom top',scrub:1}});gsap.from('.folder-art',{y:100,rotation:0,stagger:.15,duration:1,scrollTrigger:{trigger:'.folder-scene',start:'top 85%'}});gsap.to('.ticker > div',{xPercent:-35,duration:30,repeat:-1,ease:'none'});},root);return()=>ctx.revert()});return()=>mm.revert()},[page,filter]);
+useLayoutEffect(()=>{if(!matchMedia('(pointer:fine) and (prefers-reduced-motion: no-preference)').matches)return;const x=gsap.quickTo(cursor.current,'x',{duration:.25}),y=gsap.quickTo(cursor.current,'y',{duration:.25});const move=e=>{x(e.clientX);y(e.clientY);cursor.current.style.opacity='1';cursor.current.classList.toggle('hovering',Boolean(e.target.closest('a,button')))};window.addEventListener('pointermove',move);return()=>window.removeEventListener('pointermove',move)},[]);
+useLayoutEffect(()=>{if(!selected)return;const previous=document.activeElement;close.current?.focus();const old=document.body.style.overflow;document.body.style.overflow='hidden';const key=e=>{if(e.key==='Escape')setSelected(null);if(e.key==='Tab'){e.preventDefault();close.current?.focus()}};window.addEventListener('keydown',key);return()=>{document.body.style.overflow=old;window.removeEventListener('keydown',key);previous?.focus()}},[selected]);
+return <div ref={root}><a className="skip-link" href="#main">Skip to content</a><div className="cursor" ref={cursor} aria-hidden="true"/><header className="site-nav"><a className="wordmark" href="#/">Deepanshu<span>✳</span></a><nav aria-label="Main navigation">{['home','projects','art'].map(p=><a key={p} href={p==='home'?'#/':'#/'+p} aria-current={page===p?'page':undefined}>{p}</a>)}</nav><a className="pill dark nav-contact" href="mailto:ihyaet@gmail.com">Let's talk <Arrow/></a></header><main id="main">{page==='projects'?<><section className="page-intro"><p className="eyebrow">THE WORK / THE EXPLORATIONS</p><h1>Built with intention.<br/><em>Made to be felt.</em></h1><p>A collection of interfaces, experiments, and ideas in motion.</p></section><section className="section projects-page"><div className="filters" aria-label="Filter projects">{['All','Web','Experiments'].map(f=><button className={filter===f?'active':''} aria-pressed={filter===f} key={f} onClick={()=>setFilter(f)}>{f}</button>)}</div><div className="project-grid">{projects.filter(p=>filter==='All'||p.category===filter).map((p,i)=><ProjectCard key={p.name} project={p} index={i} onOpen={setSelected}/>)}</div><p className="project-disclaimer">A living collection of visual studies. Detailed case studies are coming next.</p></section><Footer/></>:page==='art'?<section className="art-page page-intro"><p className="eyebrow">THE ART ROOM</p><h1>A little space<br/><em>for imagination.</em></h1><div className="art-placeholder">✳</div><p>New perspectives are taking shape.<br/>A collection of art and experiments, coming soon.</p><a className="pill" href="#/">Back to home <Arrow/></a></section>:<Home onOpen={setSelected}/>}</main>{selected&&<div className="modal-backdrop" onClick={()=>setSelected(null)}><section className="project-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" onClick={e=>e.stopPropagation()}><button ref={close} className="modal-close" onClick={()=>setSelected(null)} aria-label="Close project">×</button><img src={selected.image} alt={selected.name}/><div><p className="eyebrow">{selected.type} / VISUAL STUDY</p><h2 id="modal-title">{selected.name}</h2><p>{selected.description}</p></div></section></div>}</div>}
