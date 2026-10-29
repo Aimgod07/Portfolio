@@ -1,0 +1,13 @@
+/* Final type pass: readable scale, stronger contrast, fewer decorative extremes. */
+:root{--font-ui:"Manrope","DM Sans",sans-serif;--font-editorial:"Newsreader","Instrument Serif",Georgia,serif;--ink-strong:#1f201d;--ink-readable:#5e5e57}
+body{font-family:var(--font-ui);font-size:16px;color:var(--ink-strong);line-height:1.55}
+h1,h2{font-family:var(--font-editorial);letter-spacing:-.035em;line-height:.98}
+h1{font-size:clamp(52px,6.6vw,90px)}h2{font-size:clamp(42px,5.1vw,70px)}
+em{font-family:var(--font-editorial);font-style:italic;color:#67675f}p{line-height:1.6}
+.eyebrow,.playloot-kicker,.story-kicker,.ux-index,.skills-header>p,.ux-heading>p:first-child,.stories-intro>p{font-size:11px;line-height:1.4;letter-spacing:1.6px}
+.site-nav nav a{font-size:12px;font-weight:600}.site-nav .nav-contact{font-size:12px}.pill{font-size:13px;font-weight:600}
+.about-copy p+p,.process-row p,.project-modal p,.page-intro>p:not(.eyebrow),.playloot-lede,.story-intro,.ux-study-copy>p,.ux-lede{font-size:15px;color:var(--ink-readable)}
+.project-caption>span,.project-disclaimer{font-size:12px}.project-caption h3{font-size:20px}
+.playloot-gallery figcaption,.story-stills figcaption,.deepster-frames figcaption,.atelier-board figcaption{font-size:10px;line-height:1.4;letter-spacing:1px}
+.footer-bottom{font-size:11px}.process-row h3{font-size:24px;font-weight:600;letter-spacing:-.02em}
+@media(max-width:700px){body{font-size:15px}h1{font-size:clamp(44px,13vw,60px)}h2{font-size:clamp(38px,11vw,54px)}.eyebrow,.playloot-kicker,.story-kicker,.ux-index,.skills-header>p,.ux-heading>p:first-child,.stories-intro>p{font-size:10px}.about-copy p+p,.process-row p,.playloot-lede,.story-intro,.ux-study-copy>p,.ux-lede{font-size:14px}}
