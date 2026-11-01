@@ -76,7 +76,8 @@ export default function ProjectStories({ compact = false }) {
             <p className="story-kicker">{project.number} / {project.label}</p>
             <h3>{project.title}</h3>
             <p className="story-intro">{project.intro}</p>
-            <ul>{project.features.map((feature) => <li key={feature}>{feature}</li>)}</ul>
+            <p className="project-detail-label">Key features</p>
+            <ul>{project.features.map((feature) => <li key={feature}><strong>{feature}</strong></li>)}</ul>
           </div>
           <div className="story-media">
             <div className="story-video">

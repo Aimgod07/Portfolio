@@ -44,7 +44,7 @@ export default function PlaylootShowcase({ compact = false }) {
           <p className="playloot-kicker">FEATURED CASE STUDY / PRODUCT ECOSYSTEM</p>
           <h2>Playloot</h2>
         </div>
-        <p className="playloot-lede">A playful arcade experience paired with a powerful product studio—one for players, one for the people shaping every moment behind the scenes.</p>
+        <div><p className="playloot-lede">A <strong>100-game arcade</strong> and a connected <strong>product management studio</strong>. Built around game discovery, player rewards and content operations.</p><div className="project-feature-chips"><span>100 games</span><span>Missions & rewards</span><span>Management studio</span></div></div>
       </div>
 
       <div className="playloot-stage">
@@ -61,16 +61,16 @@ export default function PlaylootShowcase({ compact = false }) {
         <span className="playloot-float-tag tag-motion">UI IN MOTION</span>
       </div>
 
-      {!compact && <>
+      <>
         <div className="playloot-highlights">
           {highlights.map((item) => <article key={item.value}><span>{item.value}</span><h3>{item.label}</h3><p>{item.text}</p></article>)}
         </div>
-        <div className="playloot-gallery" aria-label="Selected Playloot interface frames">
+        {!compact && <div className="playloot-gallery" aria-label="Selected Playloot interface frames">
           <figure className="mobile-shot"><img src="/media/playloot-mobile-02.jpg" alt="Playloot player profile with wallet, statistics and rewards" /><figcaption>PLAYER PROFILE / WALLET &amp; PROGRESS</figcaption></figure>
           <figure><img src="/media/playloot-pms-01.jpg" alt="Playloot studio advertisement management interface" /><figcaption>PRODUCT STUDIO / AD MANAGEMENT</figcaption></figure>
           <figure><img src="/media/playloot-pms-03.jpg" alt="Playloot studio tournament moderation interface" /><figcaption>PRODUCT STUDIO / EVENTS &amp; MODERATION</figcaption></figure>
-        </div>
-      </>}
+        </div>}
+      </>
 
       {compact && <a className="playloot-link" href="#/projects">Explore the full case study <span aria-hidden="true">↗</span></a>}
     </section>

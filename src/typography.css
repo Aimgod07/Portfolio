@@ -1,4 +1,4 @@
-/* Final type pass: readable scale, stronger contrast, fewer decorative extremes. */
+/* Project hierarchy: readable descriptions and prominent feature summaries. */
 :root{--font-ui:"Manrope","DM Sans",sans-serif;--font-editorial:"Newsreader","Instrument Serif",Georgia,serif;--ink-strong:#1f201d;--ink-readable:#5e5e57}
 body{font-family:var(--font-ui);font-size:16px;color:var(--ink-strong);line-height:1.55}
 h1,h2{font-family:var(--font-editorial);letter-spacing:-.035em;line-height:.98}

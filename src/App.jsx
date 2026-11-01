@@ -13,6 +13,7 @@ import artImage from './assets/img/ai.jpg';
 import threeImage from './assets/img/threejs.jpg';
 import './index.css';
 import './typography.css';
+import './project-details.css';
 gsap.registerPlugin(ScrollTrigger);
 const projects = [
  {name:'Play, reimagined.', type:'Interface design', category:'Web', image:projectImage, theme:'lilac', description:'An exploration of playful interfaces, game discovery, and bold visual hierarchy. A study in making a busy experience feel intuitive.'},
