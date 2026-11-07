@@ -7,6 +7,15 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
+    slug: "aura", number: "06", label: "AURA STORE / FASHION COMMERCE",
+    title: "Aura Store",
+    intro: "An expressive fashion storefront with bold art direction, curated collections and a clear path from discovery to bag.",
+    video: "/media/aura/walkthrough-1.mp4", poster: "/media/aura/screen-1.png",
+    screenshots: [1,2,3,4,5].map(n => `/media/aura/screen-${n}.png`),
+    captions: ["BRAND / HERO EXPERIENCE", "DISCOVERY / SHOP BY FEELING", "PRODUCTS / FEATURED PIECES", "COLLECTIONS / EDITORIAL STORIES", "CAMPAIGN / SEASONAL DROP"],
+    features: ["Curated collections & category discovery", "Product cards, wishlist & shopping bag", "Editorial campaigns & bold visual identity"],
+  },
+  {
     slug: "anayra",
     number: "02",
     label: "FASHION COMMERCE / WEB EXPERIENCE",
@@ -81,12 +90,13 @@ export default function ProjectStories({ compact = false }) {
           </div>
           <div className="story-media">
             <div className="story-video">
-              <div className="story-browser-bar"><i/><i/><i/><span>{project.slug === "anayra" ? "ANAYRA / SHOP THE EDIT" : "GROFIT / TRAIN WITH INTENT"}</span></div>
+              <div className="story-browser-bar"><i/><i/><i/><span>{project.title.toUpperCase()} / PRODUCT WALKTHROUGH</span></div>
               <video src={project.video} poster={project.poster} muted loop autoPlay playsInline controls={!compact} preload="metadata" aria-label={`${project.title} product walkthrough`} />
             </div>
-            {!compact && <div className="story-stills">
+            {(!compact || project.slug === 'aura') && <div className="story-stills">
               {project.screenshots.map((src, index) => <figure key={src}><img src={src} alt={`${project.title} interface detail ${index + 1}`} /><figcaption>{project.captions[index]}</figcaption></figure>)}
             </div>}
+            {project.slug === 'aura' && <details className="aura-walkthroughs"><summary>Explore all 5 walkthroughs</summary><div className="story-stills">{[2,3,4,5].map(n => <figure key={n}><video src={`/media/aura/walkthrough-${n}.mp4`} poster={`/media/aura/screen-${n}.png`} controls playsInline preload="none" aria-label={`Aura Store walkthrough ${n}`} /><figcaption>AURA STORE / WALKTHROUGH {n}</figcaption></figure>)}</div></details>}
           </div>
           <div className="story-meta"><span>{project.number}</span><span>DESIGN · DEVELOPMENT · MOTION</span></div>
         </article>
