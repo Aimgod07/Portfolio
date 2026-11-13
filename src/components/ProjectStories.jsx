@@ -7,6 +7,17 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
+    slug: "valodesignz", number: "07", label: "FASHION SHOWCASE / INTERACTIVE WEB",
+    title: "ValoDesignz",
+    intro: "An image-led fashion experience with glass surfaces, expressive typography and fluid motion, from collection discovery to personal styling.",
+    video: "/media/valodesignz/walkthrough.mp4", poster: "/media/valodesignz/screen-1.png",
+    screenshots: [1,2,3,4].map(n => `/media/valodesignz/screen-${n}.png`),
+    captions: ["IDENTITY / INTERACTIVE HERO", "COLLECTION / CATEGORY DISCOVERY", "LOOKBOOK / EDITORIAL DIRECTION", "CAMPAIGN / EVERYDAY EXPRESSION"],
+    features: ["Responsive Next.js frontend", "GSAP, ScrollTrigger & Lenis motion", "Collections, saved pieces & shopping bag", "Interactive atelier styling"],
+    url: "https://valodesignz.pages.dev",
+  },
+
+  {
     slug: "aura", number: "06", label: "AURA STORE / FASHION COMMERCE",
     title: "Aura Store",
     intro: "An expressive fashion storefront with bold art direction, curated collections and a clear path from discovery to bag.",
@@ -87,6 +98,7 @@ export default function ProjectStories({ compact = false }) {
             <p className="story-intro">{project.intro}</p>
             <p className="project-detail-label">Key features</p>
             <ul>{project.features.map((feature) => <li key={feature}><strong>{feature}</strong></li>)}</ul>
+            {project.url && <a className="story-live-link" href={project.url} target="_blank" rel="noopener noreferrer">Visit website <span aria-hidden="true">↗</span></a>}
           </div>
           <div className="story-media">
             <div className="story-video">
